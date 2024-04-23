@@ -57,30 +57,29 @@ public class LibrarySystem {
 
             int choice = scanner.nextInt();
             scanner.nextLine(); // consume newline character
-
-            switch (choice) {
-                case 1:
+              switch (choice) {
+             case 1
                     System.out.print("Enter the book title:");
                     String title = scanner.nextLine();
                     System.out.print("Enter the quantity:");
                     int quantity = scanner.nextInt();
                     library.addBook(title, quantity);
                     break;
-                case 2:
+                case 2
                     System.out.print("Enter the book title:");
                     String borrowTitle = scanner.nextLine();
                     System.out.print("Enter the quantity to borrow:");
                     int borrowQuantity = scanner.nextInt();
                     library.borrowBook(borrowTitle, borrowQuantity);
                     break;
-                case 3:
+                case 3
                     System.out.print("Enter the book title:");
                     String returnTitle = scanner.nextLine();
                     System.out.print("Enter the quantity to return:");
                     int returnQuantity = scanner.nextInt();
                     library.returnBook(returnTitle, returnQuantity);
                     break;
-                case 4:
+                case 4
                     System.out.println("Exiting the program.");
                     scanner.close();
                     System.exit(0);
