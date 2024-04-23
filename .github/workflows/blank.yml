@@ -1,0 +1,97 @@
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class LibrarySystem {
+    private HashMap<String, Integer> books;
+
+    public LibrarySystem() {
+        books = new HashMap<>();
+    }
+
+    public void addBook(String title, int quantity) {
+        if (books.containsKey(title)) {
+            int currentQuantity = books.get(title);
+            books.put(title, currentQuantity + quantity);
+            System.out.println(quantity + " copies of \"" + title + "\" added to the library.");
+        } else {
+            books.put(title, quantity);
+            System.out.println("\"" + title + "\" added to the library with quantity " + quantity + ".");
+        }
+    }
+
+    public void borrowBook(String title, int quantity) {
+        if (books.containsKey(title)) {
+            int availableQuantity = books.get(title);
+            if (availableQuantity >= quantity) {
+                books.put(title, availableQuantity - quantity);
+                System.out.println(quantity + " copies of \"" + title + "\" borrowed successfully.");
+            } else {
+                System.out.println("Sorry, only " + availableQuantity + " copies of \"" + title + "\" are available.");
+            }
+        } else {
+            System.out.println("The book \"" + title + "\" is not available in the library.");
+        }
+    }
+
+    public void returnBook(String title, int quantity) {
+        if (books.containsKey(title)) {
+            int currentQuantity = books.get(title);
+            books.put(title, currentQuantity + quantity);
+            System.out.println(quantity + " copies of \"" + title + "\" returned successfully.");
+        } else {
+            System.out.println("The book \"" + title + "\" does not belong to the library system.");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        LibrarySystem library = new LibrarySystem();
+
+        while (true) {
+            System.out.println("\nMenu:");
+            System.out.println("1. Add Books");
+            System.out.println("2. Borrow Books");
+            System.out.println("3. Return Books");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // consume newline character
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter the book title: ");
+                    String title = scanner.nextLine();
+                    System.out.print("Enter the quantity: ");
+                    int quantity = scanner.nextInt();
+                    library.addBook(title, quantity);
+                    break;
+                case 2:
+                    System.out.print("Enter the book title: ");
+                    String borrowTitle = scanner.nextLine();
+                    System.out.print("Enter the quantity to borrow: ");
+                    int borrowQuantity = scanner.nextInt();
+                    library.borrowBook(borrowTitle, borrowQuantity);
+                    break;
+                case 3:
+                    System.out.print("Enter the book title: ");
+                    String returnTitle = scanner.nextLine();
+                    System.out.print("Enter the quantity to return: ");
+                    int returnQuantity = scanner.nextInt();
+                    library.returnBook(returnTitle, returnQuantity);
+                    break;
+                case 4:
+                    System.out.println("Exiting the program.");
+                    scanner.close();
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please enter a number between 1 and 4.");
+            }
+        }
+    }
+}
+
+
+
+
